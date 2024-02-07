@@ -6,6 +6,9 @@ public class UIFactory : MonoBehaviour {
 
     [SerializeField]
     private InventoryDialog _inventoryDialog;
+    
+    [SerializeField]
+    private ChestInteractionDialog _chestInteractionDialog;
 
     public static void ShowInventory(Inventory inventory) {
         var factory = FindObjectOfType<UIFactory>();
@@ -18,5 +21,18 @@ public class UIFactory : MonoBehaviour {
         var factory = FindObjectOfType<UIFactory>();
 
         factory._inventoryDialog.Hide();
+    }
+    
+    public static void ShowChestInteraction( Inventory player,Inventory chest) {
+        var factory = FindObjectOfType<UIFactory>();
+        
+        factory._chestInteractionDialog.Set(player,chest);
+        factory._chestInteractionDialog.Show();
+    }
+    
+    public static void CloseChestInteraction() {
+        var factory = FindObjectOfType<UIFactory>();
+
+        factory._chestInteractionDialog.Hide();
     }
 }

@@ -46,8 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9f15b519229f534caf9a509799092aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resourceName: Stone
-  _amount: 1
+  _resource:
+    Name: Stone
+    Amount: 1
 --- !u!54 &6073021269877653335
 Rigidbody:
   m_ObjectHideFlags: 0

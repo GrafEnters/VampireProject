@@ -1,5 +1,3 @@
-namespace DefaultNamespace {
-    public class Rock : ComponentsContainer {
+public class Rock : ComponentsContainer {
         
-    }
 }

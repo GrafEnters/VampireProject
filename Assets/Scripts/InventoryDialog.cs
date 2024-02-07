@@ -1,5 +1,5 @@
+using System;
 using System.Collections.Generic;
-using DefaultNamespace;
 using UnityEngine;
 
 public class InventoryDialog : MonoBehaviour {
@@ -7,7 +7,8 @@ public class InventoryDialog : MonoBehaviour {
     private List<InventoryItemView> _slots;
 
     public static bool isActive = false;
-
+    private Action<Resource> _onClickedResource;
+    private Inventory _inventory;
     public void Show() {
         isActive = true;
         gameObject.SetActive(isActive);
@@ -17,16 +18,29 @@ public class InventoryDialog : MonoBehaviour {
         isActive = false;
         gameObject.SetActive(isActive);
     }
+
+    private void OnClickedResource(Resource res) {
+        _onClickedResource?.Invoke(res);
+    }
     
-    public void Set(Inventory _inventory) {
-        foreach (var VARIABLE in _slots) {
-            VARIABLE.Clear();
+    public void Set(Inventory inventory) {
+        _inventory = inventory;
+        UpdateSlots();
+    }
+
+    public void UpdateSlots() {
+        foreach (InventoryItemView view in _slots) {
+            view.Clear();
         }
 
         int i = 0;
-        foreach (var VARIABLE in _inventory._resources) {
-            _slots[i].Set(VARIABLE.Key, VARIABLE.Value.ToString());
+        foreach (Resource res in _inventory.Resources) {
+            _slots[i].Set(res,OnClickedResource);
             i++;
         }
+    }
+
+    public void SetOnClickedResource(Action<Resource> onClickedResource) {
+        _onClickedResource = onClickedResource;
     }
 }

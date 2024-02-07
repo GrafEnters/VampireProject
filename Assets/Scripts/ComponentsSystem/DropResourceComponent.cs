@@ -1,19 +1,18 @@
 using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
-namespace DefaultNamespace {
-    public class DropResourceComponent : ComponentBase {
+public class DropResourceComponent : ComponentBase {
 
-        [SerializeField]
-        private ResourceBase _resourceBase;
-        public override void Init(Action<string, Action> addAction, Action<string> onSendAction) {
-            base.Init(addAction, onSendAction);
-            addAction.Invoke("Die", DropResource);
-        }
+    [SerializeField]
+    private ResourceBase _resourceBase;
+    public override void Init(Action<string, Action<Object>> addAction, Action<string,Object> onSendAction) {
+        base.Init(addAction, onSendAction);
+        addAction.Invoke("Die", DropResource);
+    }
 
-        private void DropResource() {
-            //TODO Rework via ResourceFactory
-            Instantiate(_resourceBase, transform.position, transform.rotation);
-        }
+    private void DropResource(Object data) {
+        //TODO Rework via ResourceFactory
+        Instantiate(_resourceBase, transform.position, transform.rotation);
     }
 }

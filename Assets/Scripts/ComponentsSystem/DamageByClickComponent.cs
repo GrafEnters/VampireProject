@@ -1,20 +1,19 @@
 using System;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
-namespace DefaultNamespace {
-    [RequireComponent(typeof(HpComponent))]
-    [RequireComponent(typeof(ClickableComponent))]
-    public class DamageByClickComponent : ComponentBase {
-        [SerializeField]
-        private int _damagePerClick = 1;
+[RequireComponent(typeof(HpComponent))]
+[RequireComponent(typeof(ClickableComponent))]
+public class DamageByClickComponent : ComponentBase {
+    [SerializeField]
+    private int _damagePerClick = 1;
 
-        public override void Init(Action<string, Action> addAction, Action<string> onSendAction) {
-            base.Init(addAction, onSendAction);
-            addAction.Invoke("Click", TakeDamage);
-        }
+    public override void Init(Action<string, Action<Object>> addAction, Action<string, Object> onSendAction) {
+        base.Init(addAction, onSendAction);
+        addAction.Invoke("Click", TakeDamage);
+    }
 
-        private void TakeDamage() {
-            GetComponent<HpComponent>().TakeDamage(_damagePerClick);
-        }
+    private void TakeDamage(Object data) {
+        GetComponent<HpComponent>().TakeDamage(_damagePerClick);
     }
 }
