@@ -6,7 +6,7 @@ public class DropResourceComponent : ComponentBase {
 
     [SerializeField]
     private ResourceBase _resourceBase;
-    public override void Init(Action<string, Action<Object>> addAction, Action<string,Object> onSendAction) {
+    protected  override void Init(Action<string, Action<Object>> addAction, Action<string,Object> onSendAction) {
         base.Init(addAction, onSendAction);
         addAction.Invoke("Die", DropResource);
     }

@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Object = System.Object;
 
 public class UIFactory : MonoBehaviour {
     [SerializeField]
@@ -9,6 +11,9 @@ public class UIFactory : MonoBehaviour {
     
     [SerializeField]
     private ChestInteractionDialog _chestInteractionDialog;
+    
+    [SerializeField]
+    private FurnaceInteractionDialog _furnaceInteractionDialog;
 
     public static void ShowInventory(Inventory inventory) {
         var factory = FindObjectOfType<UIFactory>();
@@ -22,11 +27,31 @@ public class UIFactory : MonoBehaviour {
 
         factory._inventoryDialog.Hide();
     }
-    
-    public static void ShowChestInteraction( Inventory player,Inventory chest) {
+
+    public static void ShowDialog(DialogType type, DialogDataBase data = null) {
+        var factory = FindObjectOfType<UIFactory>();
+        switch (type ) {
+            case DialogType.Inventory:
+                factory._chestInteractionDialog.Set(data);
+                factory._inventoryDialog.Show();
+                break;
+            case DialogType.ChestInteraction:
+                factory._chestInteractionDialog.Set(data);
+                factory._chestInteractionDialog.Show();
+                break;
+            case DialogType.FurnaceInteraction:
+                factory._furnaceInteractionDialog.Set(data);
+                factory._furnaceInteractionDialog.Show();
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+        }
+    }
+
+    public static void ShowFurnaceInteraction( Inventory player,Inventory furnace) {
         var factory = FindObjectOfType<UIFactory>();
         
-        factory._chestInteractionDialog.Set(player,chest);
+        factory._chestInteractionDialog.Set(player,furnace);
         factory._chestInteractionDialog.Show();
     }
     
@@ -35,4 +60,14 @@ public class UIFactory : MonoBehaviour {
 
         factory._chestInteractionDialog.Hide();
     }
+}
+
+public enum DialogType {
+    Inventory = 0,
+    ChestInteraction = 1,
+    FurnaceInteraction = 2
+}
+
+public class DialogDataBase {
+    
 }

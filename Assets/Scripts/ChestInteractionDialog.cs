@@ -1,10 +1,22 @@
 using UnityEngine;
 
-public class ChestInteractionDialog : MonoBehaviour {
+public class ChestInteractionDialog : DialogBase {
     [SerializeField]
     private InventoryDialog _playerInventory, _chestInventory;
 
     public static bool isActive = false;
+
+    public override void Set(DialogDataBase dialogDataBase) {
+        base.Set(dialogDataBase);
+        ChestInteractionDialogData data = (ChestInteractionDialogData)dialogDataBase;
+        
+        _playerInventory.Set(data.Player);
+        _playerInventory.SetOnClickedResource(
+            delegate(Resource resource) { MoveResorce(resource, data.Player, data.Chest); });
+        _chestInventory.Set(data.Chest);
+        _chestInventory.SetOnClickedResource(
+            delegate(Resource resource) { MoveResorce(resource, data.Chest, data.Player); });
+    }
 
     public void Show() {
         isActive = true;
@@ -32,4 +44,9 @@ public class ChestInteractionDialog : MonoBehaviour {
         _playerInventory.UpdateSlots();
         _chestInventory.UpdateSlots();
     }
+}
+
+public class ChestInteractionDialogData : DialogDataBase {
+    public Inventory Player;
+    public Inventory Chest;
 }

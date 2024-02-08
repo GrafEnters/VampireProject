@@ -7,3 +7,11 @@ public class ResourceBase : MonoBehaviour {
 
     public Resource Resource => _resource;
 }
+
+public enum ResourceType {
+    Wood = 0,
+    Stone = 1,
+    Fiber = 2,
+    IronOre = 3,
+    IronIngot = 4
+}

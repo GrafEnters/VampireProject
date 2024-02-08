@@ -12,7 +12,7 @@ public class ComponentsContainer : MonoBehaviour {
 
     private void InitComponents() {
         foreach (ComponentBase component in GetComponents<ComponentBase>()) {
-            component.Init(AddAction, ReceiveAction);
+            component.Init(this, AddAction, ReceiveAction);
         }
     }
 
