@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7027486382816026669}
   - component: {fileID: 5407934986701382916}
   - component: {fileID: 2216116675609367586}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FiberResource
   m_TagString: Resource
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _resource:
-    Name: Fiber
+    Type: 3
     Amount: 1
 --- !u!54 &2216116675609367586
 Rigidbody:
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 6273943773202863195}
   - component: {fileID: 7403951068847869386}
   - component: {fileID: 3058858955198331930}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

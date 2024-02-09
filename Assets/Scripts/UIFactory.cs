@@ -47,19 +47,6 @@ public class UIFactory : MonoBehaviour {
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
     }
-
-    public static void ShowFurnaceInteraction( Inventory player,Inventory furnace) {
-        var factory = FindObjectOfType<UIFactory>();
-        
-        factory._chestInteractionDialog.Set(player,furnace);
-        factory._chestInteractionDialog.Show();
-    }
-    
-    public static void CloseChestInteraction() {
-        var factory = FindObjectOfType<UIFactory>();
-
-        factory._chestInteractionDialog.Hide();
-    }
 }
 
 public enum DialogType {

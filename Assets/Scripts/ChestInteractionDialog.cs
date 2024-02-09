@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ChestInteractionDialog : DialogBase {
     [SerializeField]
-    private InventoryDialog _playerInventory, _chestInventory;
+    protected InventoryDialog _playerInventory, _chestInventory;
 
     public static bool isActive = false;
 
@@ -12,10 +12,10 @@ public class ChestInteractionDialog : DialogBase {
         
         _playerInventory.Set(data.Player);
         _playerInventory.SetOnClickedResource(
-            delegate(Resource resource) { MoveResorce(resource, data.Player, data.Chest); });
+            delegate(Resource resource) { MoveResource(resource, data.Player, data.Chest); });
         _chestInventory.Set(data.Chest);
         _chestInventory.SetOnClickedResource(
-            delegate(Resource resource) { MoveResorce(resource, data.Chest, data.Player); });
+            delegate(Resource resource) { MoveResource(resource, data.Chest, data.Player); });
     }
 
     public void Show() {
@@ -23,24 +23,14 @@ public class ChestInteractionDialog : DialogBase {
         gameObject.SetActive(isActive);
     }
 
-    public void Hide() {
+    public virtual void Hide() {
         isActive = false;
         gameObject.SetActive(isActive);
     }
 
-    public void Set(Inventory player, Inventory chest) {
-        _playerInventory.Set(player);
-        _playerInventory.SetOnClickedResource(
-            delegate(Resource resource) { MoveResorce(resource, player, chest); });
-        _chestInventory.Set(chest);
-        _chestInventory.SetOnClickedResource(
-            delegate(Resource resource) { MoveResorce(resource, chest, player); });
-    }
-
-    private void MoveResorce(Resource resource, Inventory from, Inventory to) {
-        Resource tmp = resource.Clone;
-        from.RemoveResourceAmount(tmp);
-        to.AddResource(tmp);
+    protected virtual void MoveResource(Resource resource, Inventory from, Inventory to) {
+        from.RemoveResourceAmount(resource);
+        to.AddResource(resource);
         _playerInventory.UpdateSlots();
         _chestInventory.UpdateSlots();
     }

@@ -716,9 +716,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerInventory: {fileID: 2871137905456792874}
   _chestInventory: {fileID: 2949379277168426829}
-  _fuelSlot: {fileID: 0}
-  _cookingSlot: {fileID: 0}
-  _resultSlot: {fileID: 0}
+  _fuelSlot: {fileID: 906749628055010395}
+  _smeltingSlot: {fileID: 6707417383499428352}
+  _resultSlot: {fileID: 3567100692321352357}
 --- !u!1 &6123324008399765035
 GameObject:
   m_ObjectHideFlags: 0
@@ -1235,7 +1235,7 @@ PrefabInstance:
     - target: {fileID: 6652343810282071583, guid: d57eaef56da940b40b35b12e999ef0cf,
         type: 3}
       propertyPath: m_Name
-      value: SlotItemView (2)
+      value: FuelSlot
       objectReference: {fileID: 0}
     - target: {fileID: 8817026834813973625, guid: d57eaef56da940b40b35b12e999ef0cf,
         type: 3}
@@ -1247,6 +1247,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d57eaef56da940b40b35b12e999ef0cf, type: 3}
+--- !u!114 &906749628055010395 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1589668492799730537, guid: d57eaef56da940b40b35b12e999ef0cf,
+    type: 3}
+  m_PrefabInstance: {fileID: 1917065498069753650}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f791c9ac2424dfe85d77240a608ae93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &2285419759304302139 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 373158579574079753, guid: d57eaef56da940b40b35b12e999ef0cf,
@@ -1515,7 +1527,7 @@ PrefabInstance:
     - target: {fileID: 6652343810282071583, guid: d57eaef56da940b40b35b12e999ef0cf,
         type: 3}
       propertyPath: m_Name
-      value: SlotItemView (5)
+      value: ResultSlot
       objectReference: {fileID: 0}
     - target: {fileID: 8817026834813973625, guid: d57eaef56da940b40b35b12e999ef0cf,
         type: 3}
@@ -1533,6 +1545,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 2850567717539830220}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3567100692321352357 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1589668492799730537, guid: d57eaef56da940b40b35b12e999ef0cf,
+    type: 3}
+  m_PrefabInstance: {fileID: 2850567717539830220}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f791c9ac2424dfe85d77240a608ae93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4379905164642626489
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2087,7 +2111,7 @@ PrefabInstance:
     - target: {fileID: 6652343810282071583, guid: d57eaef56da940b40b35b12e999ef0cf,
         type: 3}
       propertyPath: m_Name
-      value: SlotItemView
+      value: SmeltingSlot
       objectReference: {fileID: 0}
     - target: {fileID: 8817026834813973625, guid: d57eaef56da940b40b35b12e999ef0cf,
         type: 3}
@@ -2105,6 +2129,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5411685735159173481}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6707417383499428352 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1589668492799730537, guid: d57eaef56da940b40b35b12e999ef0cf,
+    type: 3}
+  m_PrefabInstance: {fileID: 5411685735159173481}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f791c9ac2424dfe85d77240a608ae93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5881820099628589050
 PrefabInstance:
   m_ObjectHideFlags: 0

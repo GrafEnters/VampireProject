@@ -3,15 +3,16 @@ using UnityEngine;
 
 public class ResourceBase : MonoBehaviour {
     [SerializeField]
-    private Resource _resource;
+    private SerializableResource _resource;
 
-    public Resource Resource => _resource;
+    public Resource Resource => _resource.Resource;
 }
 
 public enum ResourceType {
-    Wood = 0,
-    Stone = 1,
-    Fiber = 2,
-    IronOre = 3,
-    IronIngot = 4
+    Empty = 0,
+    Wood = 1,
+    Stone = 2,
+    Fiber = 3,
+    IronOre = 4,
+    IronIngot = 5
 }

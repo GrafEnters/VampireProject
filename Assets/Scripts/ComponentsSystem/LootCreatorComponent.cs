@@ -4,16 +4,16 @@ using UnityEngine;
 [RequireComponent(typeof(InventoryComponent))]
 public class LootCreatorComponent : ComponentBase {
     [SerializeField]
-    private List<Resource> _lootResources;
+    private List<SerializableResource> _lootResources;
 
-    private void Awake() {
+    private void Start() {
         CreateLoot();
     }
 
     private void CreateLoot() {
         InventoryComponent inv = GetComponent<InventoryComponent>();
-        foreach (Resource res in _lootResources) {
-            inv.Inventory.AddResource(res);
+        foreach (SerializableResource res in _lootResources) {
+            inv.Inventory.AddResource(res.Resource);
         }
     }
 }

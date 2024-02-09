@@ -361,6 +361,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _nameText: {fileID: 4365207888949577985}
   _amountText: {fileID: 8817026834813973625}
+  _backImage: {fileID: 3963907336996407323}
 --- !u!114 &2876884324047429814
 MonoBehaviour:
   m_ObjectHideFlags: 0

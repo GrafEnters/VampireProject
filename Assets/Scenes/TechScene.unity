@@ -6501,67 +6501,14 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5679025579059043203, guid: 577dd2cf1abeb674aaf30ee433de3422,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6648898539451814743}
-    - targetCorrespondingSourceObject: {fileID: 5679025579059043203, guid: 577dd2cf1abeb674aaf30ee433de3422,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6648898539451814742}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 577dd2cf1abeb674aaf30ee433de3422, type: 3}
---- !u!1 &6648898539451814736 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5679025579059043203, guid: 577dd2cf1abeb674aaf30ee433de3422,
-    type: 3}
-  m_PrefabInstance: {fileID: 6648898539451814735}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6648898539451814737 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1698099955156257983, guid: 577dd2cf1abeb674aaf30ee433de3422,
     type: 3}
   m_PrefabInstance: {fileID: 6648898539451814735}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6648898539451814742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6648898539451814736}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b54ebd2263c24924ac05c8d8eed838a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!54 &6648898539451814743
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6648898539451814736}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!4 &6710814213929224887 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 407036628000764347, guid: cd8505f6816898649a967efd68a37dc7,
@@ -6599,10 +6546,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _lootResources:
-  - Name: Wood
-    Amount: 5
-  - Name: Stone
-    Amount: 4
+  - Type: 4
+    Amount: 10
+  - Type: 1
+    Amount: 10
+  - Type: 2
+    Amount: 10
+  - Type: 3
+    Amount: 10
+  - Type: 5
+    Amount: 1
 --- !u!4 &8741007663574650520 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2895411044874787662, guid: 4f9b9aed45cecca4ab9ac582e8696580,

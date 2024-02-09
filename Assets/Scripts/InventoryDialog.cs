@@ -42,8 +42,8 @@ public class InventoryDialog : DialogBase {
         }
 
         int i = 0;
-        foreach (Resource res in _inventory.Resources) {
-            _slots[i].Set(res,OnClickedResource);
+        foreach (InventorySlot slot in _inventory.Slots) {
+            _slots[i].Set(slot.Resource,OnClickedResource);
             i++;
         }
     }

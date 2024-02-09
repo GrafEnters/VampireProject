@@ -4,50 +4,41 @@ using UnityEngine;
 
 [System.Serializable]
 public class Inventory {
+    private List<InventorySlot> _slots;
 
-    [SerializeField]
-    private List<Resource> _resources = new List<Resource>();
+    public List<InventorySlot> Slots => _slots;
 
-    public List<Resource> Resources => _resources;
+    public Inventory(int amount) {
+        _slots = new List<InventorySlot>(amount);
+        for (int i = 0; i < amount; i++) {
+            _slots.Add(new InventorySlot());
+        }
+    }
 
     public bool HasResource(Resource res) {
-        return _resources.Any(r => r.Name == res.Name);
+        return _slots.Any(r => r.CheckResource(res));
     }
-    public Resource FindResource(string name) {
-        return _resources.Find(r => r.Name == name);
+
+    public InventorySlot FindResourceSlot(Resource res) {
+        return _slots.Find(r => r.CheckResource(res));
     }
-    
+
     public void AddResource(Resource res) {
         if (HasResource(res)) {
-            FindResource(res.Name).Amount += res.Amount;
+            FindResourceSlot(res).AddResource(res);
         } else {
-            _resources.Add(res);
+            if (HasResource(Resource.Empty)) {
+                FindResourceSlot(Resource.Empty).AddResource(res);
+            }
         }
     }
 
     public void RemoveResourceAmount(Resource res) {
         if (HasResource(res)) {
-            var curRes = FindResource(res.Name);
-            curRes.Amount  -= res.Amount;
-            if ( curRes.Amount  < 0) {
-                Debug.LogError($"Resource amount is less then 0: {curRes.Name}, amount:{curRes.Amount}");
-            }
-
-            if (curRes.Amount == 0) {
-                _resources.Remove(curRes);
-            }
+            InventorySlot curResSlot = FindResourceSlot(res);
+            curResSlot.RemoveResource(res);
         } else {
-            Debug.LogError($"No such resource to remove: {res.Name}");
+            Debug.LogError($"No such resource to remove: {res.Type}");
         }
     }
-    
-    public void RemoveResource(Resource res) {
-        if (HasResource(res)) {
-            Resource curRes = FindResource(res.Name);
-            _resources.Remove(curRes);
-        } else {
-            Debug.LogError($"No such resource to remove: {res.Name}");
-        }
-    }
-    
 }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3477894336640856164}
   - component: {fileID: 8488483727764647302}
   - component: {fileID: 6073021269877653335}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StoneResource
   m_TagString: Resource
   m_Icon: {fileID: 0}
@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _resource:
-    Name: Stone
+    Type: 2
     Amount: 1
 --- !u!54 &6073021269877653335
 Rigidbody:
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 5839328123548292642}
   - component: {fileID: 6977604751076126963}
   - component: {fileID: 4630897564330734752}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1863402817145177758}
   - component: {fileID: 133653127321946299}
   - component: {fileID: 5842889075114979938}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   - component: {fileID: 4777653751456871850}
   - component: {fileID: 8630848860430072715}
   - component: {fileID: 6588832635467962878}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IronOreResource
   m_TagString: Resource
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _resource:
-    Name: IronOre
+    Type: 4
     Amount: 1
 --- !u!54 &6588832635467962878
 Rigidbody:
