@@ -13,11 +13,22 @@ public class Player : ComponentsContainer {
 
     private void Update() {
         if (Input.GetKeyDown(KeyCode.I)) {
-            if (InventoryDialog.isActive) {
-                UIFactory.CloseInventory();
+            if (InventoryDialog.StaticActive) {
+                UIFactory.HideDialog(DialogType.Inventory);
             } else {
-                Inventory inventory = GetInventory();
-                UIFactory.ShowInventory(inventory);
+                InventoryDialogData data = new InventoryDialogData {
+                    Player = GetInventory()
+                };
+
+                UIFactory.ShowDialog(DialogType.Inventory, data);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.B)) {
+            if (BuildingSelectionDialog.StaticActive) {
+                UIFactory.HideDialog(DialogType.BuildingSelection);
+            } else {
+                UIFactory.ShowDialog(DialogType.BuildingSelection);
             }
         }
     }

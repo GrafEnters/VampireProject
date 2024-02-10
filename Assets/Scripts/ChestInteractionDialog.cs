@@ -4,28 +4,14 @@ public class ChestInteractionDialog : DialogBase {
     [SerializeField]
     protected InventoryDialog _playerInventory, _chestInventory;
 
-    public static bool isActive = false;
-
     public override void Set(DialogDataBase dialogDataBase) {
         base.Set(dialogDataBase);
         ChestInteractionDialogData data = (ChestInteractionDialogData)dialogDataBase;
-        
+
         _playerInventory.Set(data.Player);
-        _playerInventory.SetOnClickedResource(
-            delegate(Resource resource) { MoveResource(resource, data.Player, data.Chest); });
+        _playerInventory.SetOnClickedResource(delegate(Resource resource) { MoveResource(resource, data.Player, data.Chest); });
         _chestInventory.Set(data.Chest);
-        _chestInventory.SetOnClickedResource(
-            delegate(Resource resource) { MoveResource(resource, data.Chest, data.Player); });
-    }
-
-    public void Show() {
-        isActive = true;
-        gameObject.SetActive(isActive);
-    }
-
-    public virtual void Hide() {
-        isActive = false;
-        gameObject.SetActive(isActive);
+        _chestInventory.SetOnClickedResource(delegate(Resource resource) { MoveResource(resource, data.Chest, data.Player); });
     }
 
     protected virtual void MoveResource(Resource resource, Inventory from, Inventory to) {
