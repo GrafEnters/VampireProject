@@ -28,13 +28,12 @@ namespace _3rdPerson {
 
             if (Movement.magnitude != 0f) {
                 transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * _thirdPersonConfig.HorizontalSensivity * Time.deltaTime);
-
-                Quaternion CamRotation = Cam.rotation;
-                CamRotation.x = 0f;
-                CamRotation.z = 0f;
-
-                transform.rotation = Quaternion.Lerp(transform.rotation, CamRotation, 0.1f);
             }
+            
+            Quaternion CamRotation = Cam.rotation;
+            CamRotation.x = 0f;
+            CamRotation.z = 0f;
+            transform.rotation = Quaternion.Lerp(transform.rotation, CamRotation, 0.1f);
         }
     }
 }

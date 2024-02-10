@@ -11,6 +11,7 @@ public class DialogBase : MonoBehaviour {
     public virtual void Hide() {
         isActive = false;
         gameObject.SetActive(isActive);
+        UIFactory.ChangeCursorState(true);
     }
 
     public virtual void Set(DialogDataBase dialogDataBase) { }

@@ -3,7 +3,7 @@ using UnityEngine;
 using Object = System.Object;
 
 [RequireComponent(typeof(InventoryComponent))]
-public class FurnaceCC : ComponentsContainer, ICreateDialogData {
+public class FurnaceCC : BuildableCC, ICreateDialogData {
     private float _fuelSecondsLeft, _smeltingProgress;
     private InventorySlot _fuelSlot, _smeltingSlot;
 

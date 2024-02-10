@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using Object = System.Object;
 
 public class UIFactory : MonoBehaviour {
     [SerializeField]
@@ -17,13 +16,29 @@ public class UIFactory : MonoBehaviour {
 
     [SerializeField]
     private BuildingSelectionDialog _buildingSelectionDialog;
+
+    private static UIFactory factory;
     
+    private void Awake() {
+        factory = this;
+    }
+
+    public static void ChangeCursorState(bool isLocked) {
+        Cursor.visible = !isLocked;
+        Cursor.lockState = isLocked ? CursorLockMode.Locked : CursorLockMode.None;
+    }
+
+    public static bool IsInDialog() {
+
+        return factory._inventoryDialog.isActive || factory._chestInteractionDialog.isActive || factory._furnaceInteractionDialog.isActive ||
+               factory._buildingSelectionDialog.isActive;
+    }
 
     public static void ShowDialog(DialogType type, DialogDataBase data = null) {
         var factory = FindObjectOfType<UIFactory>();
         switch (type) {
             case DialogType.Inventory:
-                factory._chestInteractionDialog.Set(data);
+                factory._inventoryDialog.Set(data);
                 factory._inventoryDialog.Show();
                 break;
             case DialogType.ChestInteraction:
@@ -41,6 +56,8 @@ public class UIFactory : MonoBehaviour {
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
+
+        ChangeCursorState(false);
     }
 
     public static void HideDialog(DialogType type) {
@@ -63,6 +80,7 @@ public class UIFactory : MonoBehaviour {
                 factory._buildingSelectionDialog.Hide();
                 break;
         }
+        ChangeCursorState(true);
     }
 }
 

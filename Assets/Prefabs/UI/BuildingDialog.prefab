@@ -236,8 +236,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: InventoryDialog, Assembly-CSharp
+      - m_Target: {fileID: 199017036328610728}
+        m_TargetAssemblyTypeName: BuildingSelectionDialog, Assembly-CSharp
         m_MethodName: Hide
         m_Mode: 1
         m_Arguments:

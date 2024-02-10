@@ -1,3 +1,1 @@
-public class FoundamentCC : ComponentBase, IBuildable {
-        
-}
+public class FoundamentCC : BuildableCC { }

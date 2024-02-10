@@ -5,10 +5,13 @@ public class Player : ComponentsContainer {
 
     public static Player CurrentPlayer;
 
+    public ConstructingManager ConstructingManager => GetComponent<ConstructingManager>();
+
     public Inventory GetInventory() => GetComponent<InventoryComponent>().Inventory;
     
     protected override void Awake() {
         CurrentPlayer = this;
+        UIFactory.ChangeCursorState(true);
     }
 
     private void Update() {
@@ -28,7 +31,10 @@ public class Player : ComponentsContainer {
             if (BuildingSelectionDialog.StaticActive) {
                 UIFactory.HideDialog(DialogType.BuildingSelection);
             } else {
-                UIFactory.ShowDialog(DialogType.BuildingSelection);
+                BuildingSelectionDialogData data = new BuildingSelectionDialogData {
+                    Player = this
+                };
+                UIFactory.ShowDialog(DialogType.BuildingSelection,data);
             }
         }
     }
