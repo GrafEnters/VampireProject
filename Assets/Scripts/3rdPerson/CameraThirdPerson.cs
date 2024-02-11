@@ -24,10 +24,10 @@ namespace _3rdPerson {
 
             currentY = Mathf.Clamp(currentY, YMin, YMax);
 
-            Vector3 Direction = new Vector3(0, 0, -_thirdPersonConfig.distance);
+            Vector3 direction = new Vector3(0, 0, -_thirdPersonConfig.distance);
             Quaternion rotation = Quaternion.Euler(currentY, currentX, 0);
-            transform.position = _thirdPersonConfig.Shift + lookAt.position + rotation * Direction;
-
+            lookAt.transform.localPosition = _thirdPersonConfig.CameraPointPos;
+            transform.position = lookAt.position + rotation * (direction + _thirdPersonConfig.Shift);
             transform.LookAt(_thirdPersonConfig.Shift + lookAt.position);
         }
     }

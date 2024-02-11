@@ -7,6 +7,7 @@ namespace _3rdPerson {
         public float HorizontalSensivity = 4.0f;
         public float Verticalsensivity = 4.0f;
         public Vector3 Shift;
+        public Vector3 CameraPointPos;
         public bool IsInvertedVertical = true;
     }
 }
