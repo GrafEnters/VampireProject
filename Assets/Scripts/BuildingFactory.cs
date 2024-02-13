@@ -27,7 +27,5 @@ public class BuildingFactory : MonoBehaviour {
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
         }
-
-        return null;
     }
 }

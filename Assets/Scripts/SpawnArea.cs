@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -19,7 +18,7 @@ public class SpawnArea : MonoBehaviour {
     private int _resourcesAmount = 5;
 
     [SerializeField]
-    private GameObject _resource;
+    private List<ComponentsContainer> _resources = new List<ComponentsContainer>();
 
     private void Start() {
         PopulateArea();
@@ -72,18 +71,21 @@ public class SpawnArea : MonoBehaviour {
     }
 
     private void SpawnResource() {
+        //TODO add pooling
         Vector3 spawnRayPosition = transform.position +
                                    new Vector3(Random.Range(-_spawnRadius, _spawnRadius), _spawnRadius,
                                        Random.Range(-_spawnRadius, _spawnRadius));
         if (Physics.Raycast(spawnRayPosition, Vector3.down, out RaycastHit hit, _spawnRadius * 2, LayerMask.GetMask("Ground"))) {
-            Vector3 randomRot = new Vector3(Random.Range(-1, 1), 0, Random.Range(-1, 1));
-            Instantiate(_resource, hit.point, Quaternion.LookRotation(randomRot, hit.normal), transform);
+            Vector3 randomRot = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f));
+            ComponentsContainer resource = _resources[Random.Range(0, _resources.Count)];
+            Instantiate(resource, hit.point, Quaternion.LookRotation(randomRot, hit.normal), transform);
         }
     }
 }
 #if UNITY_EDITOR
 
 [CustomEditor(typeof(SpawnArea))]
+[CanEditMultipleObjects]
 public class SpawnAreaEditor : Editor {
     public override void OnInspectorGUI() {
         base.OnInspectorGUI();
