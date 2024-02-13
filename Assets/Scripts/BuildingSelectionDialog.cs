@@ -16,9 +16,9 @@ public class BuildingSelectionDialog : DialogBase {
     private Player _player;
 
     private void Start() {
-        foreach (object enumStr in Enum.GetValues(typeof(BuildingType))) {
+        foreach (var enumStr in BuildingFactory.BuildingsList.Buildings) {
             BuildingSelectButton button = Instantiate(_buttonPrefab, _buttonsHolder);
-            button.Set((BuildingType)enumStr, SelectBuilding);
+            button.Set(enumStr.BuildingUniqueName, SelectBuilding);
         }
     }
 
@@ -37,7 +37,7 @@ public class BuildingSelectionDialog : DialogBase {
         StaticActive = true;
     }
 
-    public void SelectBuilding(BuildingType type) {
+    public void SelectBuilding(string type) {
         BuildableCC buildable = BuildingFactory.GetPrefabByType(type);
         _player.ConstructingManager.StartConstructing(buildable);
         Hide();

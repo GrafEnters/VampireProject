@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class BuildingFactory : MonoBehaviour {
@@ -6,26 +5,19 @@ public class BuildingFactory : MonoBehaviour {
     private Transform _buildingsContainer;
 
     [SerializeField]
-    private BuildableCC _foundamentCc, _wall, _furnace, _chest,_stairs;
+    private BuildingsList _buildings;
+
+    public static BuildingsList BuildingsList => FindObjectOfType<BuildingFactory>()._buildings;
 
     //TODO Add pooling
-    public static BuildableCC GetPrefabByType(BuildingType type) {
+    public static BuildableCC GetPrefabByType(string buildingUniqueName) {
         var factory = FindObjectOfType<BuildingFactory>();
-        switch (type) {
-            case BuildingType.Foundament:
-                return Instantiate(factory._foundamentCc, factory._buildingsContainer);
-
-            case BuildingType.Wall:
-                return Instantiate(factory._wall, factory._buildingsContainer);
-            case BuildingType.Furnace:
-                return Instantiate(factory._furnace, factory._buildingsContainer);
-            case BuildingType.Chest:
-                return Instantiate(factory._chest, factory._buildingsContainer);
-            case BuildingType.Stairs:
-                return Instantiate(factory._stairs, factory._buildingsContainer);
-
-            default:
-                throw new ArgumentOutOfRangeException(nameof(type), type, null);
+        BuildingConfig b = factory._buildings.Buildings.Find(b => b.BuildingUniqueName == buildingUniqueName);
+        if (b == null) {
+            Debug.LogError($"Building not found in list, id: {buildingUniqueName}");
+            return null;
         }
+
+        return Instantiate(b.Building, factory._buildingsContainer);
     }
 }

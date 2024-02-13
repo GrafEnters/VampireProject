@@ -6,12 +6,12 @@ public class BuildingSelectButton : MonoBehaviour {
 
     [SerializeField]
     private TMP_Text _nameText;
-    private Action<BuildingType> _onCLick;
-    private BuildingType _buildingType;
+    private Action<string> _onCLick;
+    private string _buildingType;
 
-    public void Set(BuildingType type,Action<BuildingType> onCLick) {
-        _nameText.text = type.ToString();
-        _buildingType = type;
+    public void Set(string buildingId,Action<string> onCLick) {
+        _nameText.text = buildingId;
+        _buildingType = buildingId;
         _onCLick = onCLick;
     }
 

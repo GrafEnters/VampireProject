@@ -527,6 +527,37 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 96196880}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &169270827
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 169270828}
+  m_Layer: 0
+  m_Name: Buildings
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &169270828
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169270827}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1740602953}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &207872876
 GameObject:
   m_ObjectHideFlags: 0
@@ -4224,7 +4255,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c4d1dbc7e8349c58f8b566688b5de94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buildingsContainer: {fileID: 0}
+  _buildingsContainer: {fileID: 169270828}
   _foundamentCc: {fileID: 3679823334338739506, guid: e5e790c54b71c414bb01bcc090a2a0df,
     type: 3}
   _wall: {fileID: 1156233454015368516, guid: efb7ac2eb405cf348953027cfe54e150, type: 3}
@@ -4232,6 +4263,7 @@ MonoBehaviour:
     type: 3}
   _chest: {fileID: 6471560095341159540, guid: 4f9b9aed45cecca4ab9ac582e8696580, type: 3}
   _stairs: {fileID: 5780627940860287844, guid: 1da52747686943440bbf11fcde3e9c5d, type: 3}
+  _buildings: {fileID: 11400000, guid: 19edda878f18d1c40ba84e0539c60d3a, type: 2}
 --- !u!4 &807861951
 Transform:
   m_ObjectHideFlags: 0
@@ -7953,6 +7985,7 @@ Transform:
   m_Children:
   - {fileID: 1006472782}
   - {fileID: 597987738}
+  - {fileID: 169270828}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1752887324
