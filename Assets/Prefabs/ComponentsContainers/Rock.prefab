@@ -147,8 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bbcd53e0b264653872bf245aec907a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resourceBase: {fileID: 8488483727764647302, guid: 8071b6023fa964c4cbf92276ed2457b3,
-    type: 3}
+  _resourcesToDrop:
+  - Type: 2
+    Amount: 5
 --- !u!114 &8289722061032541265
 MonoBehaviour:
   m_ObjectHideFlags: 0
