@@ -200,6 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   Cam: {fileID: 0}
+  _animator: {fileID: 5539246644488006401}
   _thirdPersonConfig: {fileID: 11400000, guid: f2ede0e0c5d8f6244ad5150e25390bf6, type: 2}
 --- !u!54 &5289615010191891789
 Rigidbody:
