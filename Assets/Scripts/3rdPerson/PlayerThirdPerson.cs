@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace _3rdPerson {
     public class PlayerThirdPerson : MonoBehaviour {
-        CharacterController Controller;
+        Rigidbody Controller;
 
         public float Speed;
 
@@ -16,11 +16,11 @@ namespace _3rdPerson {
 
         // Start is called before the first frame update
         void Start() {
-            Controller = GetComponent<CharacterController>();
+            Controller = GetComponent<Rigidbody>();
         }
 
         // Update is called once per frame
-        void Update() {
+        void FixedUpdate() {
             float Horizontal = Input.GetAxis("Horizontal") * Speed;
             float Vertical = Input.GetAxis("Vertical") * Speed;
 
@@ -30,7 +30,7 @@ namespace _3rdPerson {
             
             Movement *= Time.deltaTime;
 
-            Controller.Move(Movement);
+            Controller.MovePosition(transform.position +  Movement);
 
             if (Movement.magnitude != 0f) {
                 transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * _thirdPersonConfig.HorizontalSensivity * Time.deltaTime);

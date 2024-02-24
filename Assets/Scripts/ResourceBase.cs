@@ -18,5 +18,8 @@ public enum ResourceType {
     Stone = 2,
     Fiber = 3,
     IronOre = 4,
-    IronIngot = 5
+    IronIngot = 5,
+    Wool = 6,
+    Meat = 7,
+    Bone = 8,
 }

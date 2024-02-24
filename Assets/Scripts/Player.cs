@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class Player : ComponentsContainer {
+public class Player : CreatureBase {
 
    
     
