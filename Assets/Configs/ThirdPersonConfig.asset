@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0e5a09faf0029f4e80a362f27512ab7, type: 3}
   m_Name: ThirdPersonConfig
   m_EditorClassIdentifier: 
-  distance: 1.88
+  distance: 2.64
   HorizontalSensivity: 280
   Verticalsensivity: 100
-  Shift: {x: 0, y: 0, z: 0}
-  CameraPointPos: {x: 0.5, y: 0.5, z: 0.35}
+  Shift: {x: 0.03, y: 0.09, z: 0.26}
+  CameraPointPos: {x: 0.51, y: 0.59, z: 0.38}
   IsInvertedVertical: 0
