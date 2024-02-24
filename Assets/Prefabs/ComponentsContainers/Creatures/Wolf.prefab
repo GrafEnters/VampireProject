@@ -789,6 +789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fov: {fileID: 6710244434311445548}
+  _navAgent: {fileID: 6721497775953413745}
 --- !u!54 &7051077015249533050
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -893,7 +894,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: 0.56
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!1 &8115355826013092928
