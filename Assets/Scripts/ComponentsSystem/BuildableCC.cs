@@ -5,13 +5,21 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class BuildableCC : ComponentsContainer, IBuildable {
     private List<Collider> _nonTriggerColliders;
-    
+
     private Dictionary<MeshRenderer, Material> _meshes;
     private Dictionary<GameObject, int> _layers;
-    private int _layer;
+    [SerializeField]
+    private List<MagnetableAnchor> _magnetableAnchors;
+  
+
+    public List<MagnetableAnchor> Anchors => _magnetableAnchors;
+
+    protected override void Awake() {
+        base.Awake();
+        _magnetableAnchors = GetComponentsInChildren<MagnetableAnchor>().ToList();
+    }
 
     public void SetConstructingState() {
-        _layer = gameObject.layer;
         ChangeLayer(LayerMask.NameToLayer("Ignore Raycast"));
         if (_nonTriggerColliders == null) {
             _nonTriggerColliders = GetComponentsInChildren<Collider>().Where(c => !c.isTrigger).ToList();
@@ -29,7 +37,7 @@ public class BuildableCC : ComponentsContainer, IBuildable {
                 _meshes.Add(meshRenderer, meshRenderer.material);
             }
         }
-        
+
         foreach (MeshRenderer meshRenderer in _meshes.Keys) {
             meshRenderer.material = newMaterial;
         }
@@ -42,7 +50,7 @@ public class BuildableCC : ComponentsContainer, IBuildable {
     }
 
     public void SetFixedState() {
-        ChangeLayer(_layer);
+        ResetLayers();
         foreach (var col in _nonTriggerColliders) {
             col.isTrigger = false;
         }
@@ -61,10 +69,20 @@ public class BuildableCC : ComponentsContainer, IBuildable {
             layers.gameObject.layer = layer;
         }
     }
-    
+
     public void ResetLayers() {
         foreach (var kvp in _layers) {
             kvp.Key.layer = kvp.Value;
         }
     }
+
+#if UNITY_EDITOR
+    private void OnDrawGizmos() {
+        foreach (MagnetableAnchor anchor in GetComponentsInChildren<MagnetableAnchor>()) {
+            Gizmos.color = anchor.GetColor();
+            Gizmos.DrawWireSphere(anchor.transform.position, anchor.Radius);
+        }
+    }
+
+#endif
 }

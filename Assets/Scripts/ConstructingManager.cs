@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class ConstructingManager : MonoBehaviour {
@@ -15,9 +16,14 @@ public class ConstructingManager : MonoBehaviour {
     [SerializeField]
     private float _maxDist = 5, _rotationSpeed = 1;
 
+
+    
+    
+    
+
     public void StartConstructing(BuildableCC building) {
         if (_building != null) {
-            QuitConstrucing();
+            QuitConstructing();
         }
 
         _building = building;
@@ -31,14 +37,15 @@ public class ConstructingManager : MonoBehaviour {
         if (!_isBuilding) {
             return;
         }
-
+        
         _building.transform.position = CalculatePos();
+        _building.transform.position += CalculateAnchorShift();
         if (Input.mouseScrollDelta != Vector2.zero) {
             _building.transform.Rotate(Vector3.up, Input.mouseScrollDelta.y * _rotationSpeed);
         }
 
         if (Input.GetMouseButtonDown(1)) {
-            QuitConstrucing();
+            QuitConstructing();
             return;
         }
 
@@ -49,12 +56,23 @@ public class ConstructingManager : MonoBehaviour {
     }
 
     private Vector3 CalculatePos() {
+        
         Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width, Screen.height) / 2);
         if (Physics.Raycast(ray, out RaycastHit hitInfo, _maxDist, _raycastLayerMask)) {
             return hitInfo.point;
         }
 
         return ray.GetPoint(_maxDist);
+    }
+    
+    private Vector3 CalculateAnchorShift() {
+        foreach (var variable in _building.Anchors) {
+            Vector3 possibleShift = variable.TryShift();
+            if (possibleShift != Vector3.zero) {
+                return possibleShift;
+            }
+        }
+        return Vector3.zero;
     }
 
     private void FixContructableAndEndConstructing() {
@@ -68,12 +86,11 @@ public class ConstructingManager : MonoBehaviour {
         _building = null;
     }
 
-    private void QuitConstrucing() {
+    private void QuitConstructing() {
         if (!_isBuilding) {
             return;
         }
 
         _isBuilding = false;
-        Destroy(_building.gameObject);
     }
 }

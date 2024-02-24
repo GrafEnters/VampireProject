@@ -182,8 +182,8 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.1
-  m_SkinWidth: 0.08
+  m_StepOffset: 0.01
+  m_SkinWidth: 0.001
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7288365505870518139
@@ -200,6 +200,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Speed: 5
   Cam: {fileID: 0}
+  _animator: {fileID: 5539246644488006401}
   _thirdPersonConfig: {fileID: 11400000, guid: f2ede0e0c5d8f6244ad5150e25390bf6, type: 2}
 --- !u!54 &5289615010191891789
 Rigidbody:

@@ -127,8 +127,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bbcd53e0b264653872bf245aec907a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resourceBase: {fileID: 2446971054163143139, guid: a7006bcb965abaf468acc84b02c794de,
-    type: 3}
+  _resourcesToDrop:
+  - Type: 1
+    Amount: 5
+  - Type: 3
+    Amount: 1
 --- !u!1 &3681971673710793737
 GameObject:
   m_ObjectHideFlags: 0

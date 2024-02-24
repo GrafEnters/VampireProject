@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Player : ComponentsContainer {
 
+   
+    
     public static Player CurrentPlayer;
 
     public ConstructingManager ConstructingManager => GetComponent<ConstructingManager>();
@@ -15,6 +17,11 @@ public class Player : ComponentsContainer {
     }
 
     private void Update() {
+       
+        
+        if (UIFactory.IsInDialog()) {
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.I)) {
             if (InventoryDialog.StaticActive) {
                 UIFactory.HideDialog(DialogType.Inventory);

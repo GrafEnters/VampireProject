@@ -17,6 +17,9 @@ namespace _3rdPerson {
 
 
         void LateUpdate() {
+            if (UIFactory.IsInDialog()) {
+                return;
+            }
             currentX += Input.GetAxis("Mouse X") * _thirdPersonConfig.HorizontalSensivity * Time.deltaTime;
             float vertDif = Input.GetAxis("Mouse Y") * _thirdPersonConfig.Verticalsensivity * Time.deltaTime;
             vertDif *= _thirdPersonConfig.IsInvertedVertical ? 1 : -1;

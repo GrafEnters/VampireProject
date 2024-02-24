@@ -6,6 +6,10 @@ public class ResourceBase : MonoBehaviour {
     private SerializableResource _resource;
 
     public Resource Resource => _resource.Resource;
+
+    public void SetResourceAmount(int amount) {
+        _resource.Amount = amount;
+    }
 }
 
 public enum ResourceType {
