@@ -5,16 +5,6 @@ using UnityEngine;
 public class ResourceCollectorComponent : InventoryComponent {
     private void OnCollisionEnter(Collision collision) {
         Rigidbody rb = collision.collider.attachedRigidbody;
-        if (rb.transform.CompareTag("Resource")) {
-            ResourceBase res = rb.GetComponent<ResourceBase>();
-
-            Inventory.AddResource(res.Resource);
-            Destroy(rb.gameObject);
-        }
-    }
-
-    private void OnControllerColliderHit(ControllerColliderHit hit) {
-        Rigidbody rb = hit.rigidbody;
         if (rb == null) {
             return;
         }
@@ -25,6 +15,7 @@ public class ResourceCollectorComponent : InventoryComponent {
             Destroy(rb.gameObject);
         }
     }
+
     /*
     private void OnTriggerEnter(Collider other) {
         if (other.attachedRigidbody.transform.CompareTag("Resource")) {
