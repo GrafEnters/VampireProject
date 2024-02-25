@@ -29,7 +29,8 @@ public class FieldOfView : MonoBehaviour {
             return;
         }
         GameObject go = other.attachedRigidbody.gameObject;
-        if (!_isImportant(go)) {
+
+        if (_isImportant == null || !_isImportant(go)) {
             return;
         }
 
