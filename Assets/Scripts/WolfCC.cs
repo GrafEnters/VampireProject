@@ -98,28 +98,41 @@ public class WolfCC : CreatureBase {
 
         while ((_target - _rb.position).magnitude > _reachDistance) {
             Vector3 dir = (_target - transform.position).normalized;
+            dir.y = 0;
             float angle = Vector3.Angle(transform.forward, dir);
-
-            var targetDir = _target - transform.position;
-            var forward = transform.forward;
-            var localTarget = transform.InverseTransformPoint(_target);
-
+            
+            
+            Vector3 localTarget = transform.InverseTransformPoint(_target);
             angle = Mathf.Atan2(localTarget.x, localTarget.z) * Mathf.Rad2Deg;
-
             Vector3 eulerAngleVelocity = new Vector3(0, angle, 0);
             Quaternion deltaRotation = Quaternion.Euler(eulerAngleVelocity * _ikSettingsConfig.RotationSpeed * Time.fixedDeltaTime);
             _rb.MoveRotation(_rb.rotation * deltaRotation);
 
+            /* Physics
+                Vector3 forcedStep = dir * _ikSettingsConfig.StepForce;
+                if (Vector3.Angle(_rb.velocity, forcedStep) > _ikSettingsConfig.MaxAngleBeforeStoppingCoefficient) {
+                    forcedStep *= _ikSettingsConfig.StoppingCoefficient;
+                }
+            
+                _rb.AddForce( forcedStep * _ikSettingsConfig.MoveSpeed * Time.fixedDeltaTime);
+
+                if (_rb.velocity.magnitude >= _ikSettingsConfig.MaxRbVelocity) {
+                    _rb.velocity = _rb.velocity.normalized * _ikSettingsConfig.MaxRbVelocity;
+                }
+            }*/
+           
             _rb.MovePosition(_rb.position + dir * _ikSettingsConfig.MoveSpeed * Time.fixedDeltaTime);
-            Vector3 newRaycastsPoint = _footRaycastsOffset + dir * _ikSettingsConfig.RotationSpeed;
+            
+            Vector3 newRaycastsPoint = _footRaycastsOffset + dir * _ikSettingsConfig.RaycastDistanceParam;
             newRaycastsPoint.y = 0.4f;
-            _footRaycasts.transform.position = transform.position + newRaycastsPoint * _ikSettingsConfig.RaycastDistanceParam;
-            yield return new WaitForFixedUpdate();
+            _footRaycasts.transform.position = transform.position + newRaycastsPoint;
 
             if (_targetObj != null) {
                 _target = _targetObj.transform.position;
                 _headTarget.transform.position = _target;
             }
+            
+            yield return new WaitForFixedUpdate();
         }
 
         OnReachDestination();
@@ -129,7 +142,6 @@ public class WolfCC : CreatureBase {
         Debug.Log($"{gameObject.name} looking around!");
         float time = 0;
         float maxTime = 0.5f;
-        var rb = GetComponent<Rigidbody>();
         while (time < maxTime) {
             _headTarget.transform.position = transform.position + Quaternion.Euler(0, 90 * (time / maxTime), 0) * transform.forward * 5;
             yield return new WaitForFixedUpdate();
