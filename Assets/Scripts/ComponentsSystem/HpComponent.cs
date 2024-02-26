@@ -6,8 +6,11 @@ public class HpComponent : ComponentBase {
     [SerializeField]
     private int _maxHp;
 
+    [SerializeField]
+    private bool _destroyOnDeath = true;
+
     private void Awake() {
-        _currenthp = _maxHp;
+        RefillHealth();
     }
 
     public void TakeDamage(int amount) {
@@ -20,6 +23,13 @@ public class HpComponent : ComponentBase {
 
     private void Die() {
         _sendAction?.Invoke("Die", null);
-        Destroy(gameObject);
+        //TODO enable ragdoll here
+        if (_destroyOnDeath) {
+            Destroy(gameObject);
+        }
+    }
+
+    public void RefillHealth() {
+        _currenthp = _maxHp;
     }
 }

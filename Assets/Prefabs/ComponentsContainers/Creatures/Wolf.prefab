@@ -1129,6 +1129,7 @@ GameObject:
   - component: {fileID: 2929329992995350181}
   - component: {fileID: -1180321528062787779}
   - component: {fileID: 6721497775953413745}
+  - component: {fileID: 2589731095283088831}
   m_Layer: 0
   m_Name: Wolf
   m_TagString: Untagged
@@ -1175,7 +1176,8 @@ MonoBehaviour:
   _ikTargetsContainer: {fileID: 3405354783744103410}
   _headTarget: {fileID: 5117416127025749631}
   _footRaycasts: {fileID: 7100264794710537331}
-  _footRaycastsOffset: {x: 0, y: 0, z: 1.8}
+  _footRaycastsOffset: {x: 0, y: 0, z: 0}
+  _damage: 10
 --- !u!114 &649868074526556064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1283,6 +1285,22 @@ NavMeshAgent:
   m_BaseOffset: -0.1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &2589731095283088831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7318673929947864154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f46cec8d5284686b3e23521685e26a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 3332883781161917045}
+  _animTriggers:
+  - ComponentEvent: TakeDamage
+    AnimationTrigger: TakeDamage
 --- !u!1 &7815210056147856824
 GameObject:
   m_ObjectHideFlags: 0

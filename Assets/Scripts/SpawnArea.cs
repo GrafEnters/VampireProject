@@ -21,7 +21,9 @@ public class SpawnArea : MonoBehaviour {
     private List<ComponentsContainer> _resources = new List<ComponentsContainer>();
 
     private void Start() {
-        PopulateArea();
+        if (transform.childCount == 0) {
+            PopulateArea();
+        }
         StartCoroutine(CheckResources());
     }
 

@@ -37,6 +37,11 @@ public class WolfCC : CreatureBase {
 
     [SerializeField]
     private Vector3 _footRaycastsOffset;
+    
+    [SerializeField]
+    private int _damage;
+
+    private bool _isLockedTask = false;
 
     private static readonly int Attack1 = Animator.StringToHash("Attack");
     private static readonly int Velocity = Animator.StringToHash("Velocity");
@@ -66,6 +71,9 @@ public class WolfCC : CreatureBase {
     }
 
     private void OnSeeObj(GameObject obj) {
+        if (_isLockedTask) {
+            return;
+        }
         if (obj.tag == "Player") {
             _targetObj = obj;
             StopTask();
@@ -83,10 +91,16 @@ public class WolfCC : CreatureBase {
             return;
         }
 
-        if (_targetObj != null) {
+        if (_isLockedTask) {
+            return;
+        }
+
+        if (_targetObj != null ) {
             _target = _targetObj.transform.position;
             _headTarget.transform.position = _target;
-            _taskCoroutine = StartCoroutine(Hunt());
+            if (_taskCoroutine == null) {
+                _taskCoroutine = StartCoroutine(Hunt());
+            }
         }
     }
 
@@ -193,14 +207,23 @@ public class WolfCC : CreatureBase {
     }
 
     private IEnumerator Attack() {
+        _isLockedTask = true;
         _navAgent.enabled = false;
         _animator.SetTrigger(Attack1);
-        yield return new WaitForSeconds(1);
+        
+        yield return new WaitForSeconds(1f);
+        if (_targetObj != null) {
+            _targetObj.GetComponent<HpComponent>().TakeDamage(_damage);
+        }
+
+        _isLockedTask = false;
         StopTask();
         //_navAgent.enabled = true;
+        
     }
 
     private void StopTask() {
+        
         if (_taskCoroutine != null) {
             StopCoroutine(_taskCoroutine);
             _taskCoroutine = null;

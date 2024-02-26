@@ -17,8 +17,11 @@ public class UIFactory : MonoBehaviour {
     [SerializeField]
     private BuildingSelectionDialog _buildingSelectionDialog;
 
+    [SerializeField]
+    private DeathDialog _deathDialog;
+
     private static UIFactory factory;
-    
+
     private void Awake() {
         factory = this;
     }
@@ -29,7 +32,6 @@ public class UIFactory : MonoBehaviour {
     }
 
     public static bool IsInDialog() {
-
         return factory._inventoryDialog.isActive || factory._chestInteractionDialog.isActive || factory._furnaceInteractionDialog.isActive ||
                factory._buildingSelectionDialog.isActive;
     }
@@ -52,6 +54,10 @@ public class UIFactory : MonoBehaviour {
             case DialogType.BuildingSelection:
                 factory._buildingSelectionDialog.Set(data);
                 factory._buildingSelectionDialog.Show();
+                break;
+            case DialogType.DeathDialog:
+                factory._deathDialog.Set(data);
+                factory._deathDialog.Show();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(type), type, null);
@@ -79,7 +85,12 @@ public class UIFactory : MonoBehaviour {
 
                 factory._buildingSelectionDialog.Hide();
                 break;
+            case DialogType.DeathDialog:
+
+                factory._deathDialog.Hide();
+                break;
         }
+
         ChangeCursorState(true);
     }
 }
@@ -88,9 +99,8 @@ public enum DialogType {
     Inventory = 0,
     ChestInteraction = 1,
     FurnaceInteraction = 2,
-    BuildingSelection = 3
+    BuildingSelection = 3,
+    DeathDialog = 4,
 }
 
-public class DialogDataBase {
-    
-}
+public class DialogDataBase { }
