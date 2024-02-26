@@ -3,6 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "ScriptableObjects/IkSettingsConfig", fileName = "IkSettingsConfig", order = 1)]
 public class IkSettingsConfig : ScriptableObject {
 
+    public float MaxMoveSpeed = 1;
     public float MaxRbVelocity = 1;
     public float StepForce = 1;
     public float MaxAngleBeforeStoppingCoefficient = 45;

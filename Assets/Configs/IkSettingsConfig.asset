@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c2eb0341b2d7cc4f86b5fcd9e93b8b5, type: 3}
   m_Name: IkSettingsConfig
   m_EditorClassIdentifier: 
+  MaxMoveSpeed: 0.05
   MaxRbVelocity: 5
   StepForce: 200
   MaxAngleBeforeStoppingCoefficient: 45
@@ -20,6 +21,6 @@ MonoBehaviour:
   RotationSpeed: 4
   MaxDiagonalStepDistance: 1.8
   MaxSideStepDistance: 0.4
-  RaycastDistanceParam: 0.43
+  RaycastDistanceParam: 1.5
   MoveFootSpeed: 4
   Amplitude: 0.1

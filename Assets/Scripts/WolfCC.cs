@@ -7,6 +7,10 @@ public class WolfCC : CreatureBase {
     private float _reachDistance = 0.75f;
 
     [SerializeField]
+    private Animator _animator;
+
+
+    [SerializeField]
     private FieldOfView _fov;
 
     [SerializeField]
@@ -33,6 +37,9 @@ public class WolfCC : CreatureBase {
 
     [SerializeField]
     private Vector3 _footRaycastsOffset;
+
+    private static readonly int Attack1 = Animator.StringToHash("Attack");
+    private static readonly int Velocity = Animator.StringToHash("Velocity");
 
     protected override void Awake() {
         _rb = GetComponent<Rigidbody>();
@@ -95,7 +102,7 @@ public class WolfCC : CreatureBase {
 
     private IEnumerator Hunt() {
         Debug.Log($"{gameObject.name} hunting!");
-
+        Vector3 velocity = Vector3.zero;
         while ((_target - _rb.position).magnitude > _reachDistance) {
             Vector3 dir = (_target - transform.position).normalized;
             dir.y = 0;
@@ -120,9 +127,16 @@ public class WolfCC : CreatureBase {
                     _rb.velocity = _rb.velocity.normalized * _ikSettingsConfig.MaxRbVelocity;
                 }
             }*/
-           
-            _rb.MovePosition(_rb.position + dir * _ikSettingsConfig.MoveSpeed * Time.fixedDeltaTime);
-            
+
+            Vector3 shift = dir * _ikSettingsConfig.MoveSpeed * Time.fixedDeltaTime;
+            velocity += shift;
+            if (velocity.magnitude > _ikSettingsConfig.MaxMoveSpeed) {
+                velocity = velocity.normalized * _ikSettingsConfig.MaxMoveSpeed;
+            }
+
+            _animator.SetFloat(Velocity, velocity.magnitude / _ikSettingsConfig.MaxMoveSpeed);
+            _rb.MovePosition(_rb.position + velocity);
+
             Vector3 newRaycastsPoint = _footRaycastsOffset + dir * _ikSettingsConfig.RaycastDistanceParam;
             newRaycastsPoint.y = 0.4f;
             _footRaycasts.transform.position = transform.position + newRaycastsPoint;
@@ -179,7 +193,7 @@ public class WolfCC : CreatureBase {
 
     private IEnumerator Attack() {
         _navAgent.enabled = false;
-        Debug.Log($"{gameObject.name} attacking!");
+        _animator.SetTrigger(Attack1);
         yield return new WaitForSeconds(1);
         StopTask();
         //_navAgent.enabled = true;
