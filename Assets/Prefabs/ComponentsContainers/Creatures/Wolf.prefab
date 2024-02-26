@@ -1123,9 +1123,9 @@ GameObject:
   m_Component:
   - component: {fileID: 8164128756697753585}
   - component: {fileID: 2864757513507088361}
+  - component: {fileID: 649868074526556064}
   - component: {fileID: 7051077015249533050}
   - component: {fileID: 7663693538055795416}
-  - component: {fileID: 649868074526556064}
   - component: {fileID: 2929329992995350181}
   - component: {fileID: -1180321528062787779}
   - component: {fileID: 6721497775953413745}
@@ -1176,6 +1176,19 @@ MonoBehaviour:
   _headTarget: {fileID: 5117416127025749631}
   _footRaycasts: {fileID: 7100264794710537331}
   _footRaycastsOffset: {x: 0, y: 0, z: 1.8}
+--- !u!114 &649868074526556064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7318673929947864154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a641813a04e24d648cb5a5358c148b77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHp: 10
 --- !u!54 &7051077015249533050
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1215,19 +1228,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75049847500947edb529b150363813cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &649868074526556064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7318673929947864154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a641813a04e24d648cb5a5358c148b77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHp: 10
 --- !u!114 &2929329992995350181
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -42,6 +42,7 @@ public class WolfCC : CreatureBase {
     private static readonly int Velocity = Animator.StringToHash("Velocity");
 
     protected override void Awake() {
+        base.Awake();
         _rb = GetComponent<Rigidbody>();
         _fov.Init(IsImportant, OnSeeObj, OnRemoveObj);
         InvokeRepeating(nameof(UpdateTarget), 0.05f, 0.05f);

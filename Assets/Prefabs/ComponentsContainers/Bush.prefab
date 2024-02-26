@@ -128,8 +128,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bbcd53e0b264653872bf245aec907a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _resourceBase: {fileID: 5407934986701382916, guid: 09164e771d549594586594a1e5872eb0,
-    type: 3}
+  _resourcesToDrop:
+  - Type: 3
+    Amount: 3
+  - Type: 1
+    Amount: 1
+  _randomDropRadius: 0.25
 --- !u!1 &2069751944726566971
 GameObject:
   m_ObjectHideFlags: 0
