@@ -7,10 +7,6 @@ public class WolfCC : CreatureBase {
     private float _reachDistance = 0.75f;
 
     [SerializeField]
-    private Animator _animator;
-
-
-    [SerializeField]
     private FieldOfView _fov;
 
     [SerializeField]

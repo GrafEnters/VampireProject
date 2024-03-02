@@ -10,6 +10,9 @@ namespace _3rdPerson {
 
         [SerializeField]
         private Animator _animator;
+        
+        [SerializeField]
+        private float _maxMoveSpeed;
 
         [SerializeField]
         private ThirdPersonConfig _thirdPersonConfig;
@@ -26,7 +29,11 @@ namespace _3rdPerson {
 
             Vector3 Movement = Cam.transform.right * Horizontal + Cam.transform.forward * Vertical;
             Movement.y = 0f;
-            _animator.SetFloat("movingSpeed", Movement.magnitude);
+            if (Movement.magnitude > _maxMoveSpeed) {
+                Movement = Movement.normalized * _maxMoveSpeed;
+            }
+            
+            _animator.SetFloat("movingSpeed", Movement.magnitude / _maxMoveSpeed);
             
             Movement *= Time.deltaTime;
 
