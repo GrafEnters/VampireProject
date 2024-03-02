@@ -12,6 +12,7 @@ public class WeaponBase : MonoBehaviour {
     
     private void Awake() {
         _rb = GetComponent<Rigidbody>();
+        SetCollisionsDetection(false);
     }
 
     public void Init(HpComponent _player, WeaponConfig config) {
