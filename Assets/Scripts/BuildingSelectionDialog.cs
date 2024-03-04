@@ -40,7 +40,7 @@ public class BuildingSelectionDialog : DialogBase {
     public void SelectBuilding(string type) {
         BuildableCC buildable = BuildingFactory.GetPrefabByType(type);
         _player.ConstructingManager.StartConstructing(buildable);
-        Hide();
+        HideButton();
     }
 }
 
@@ -53,5 +53,6 @@ public enum BuildingType {
     Wall = 1,
     Furnace = 2,
     Chest = 3,
-    Stairs = 4
+    Stairs = 4,
+    SkillAltar = 5
 }
