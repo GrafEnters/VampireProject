@@ -17,7 +17,11 @@ public class Player : CreatureBase {
         CurrentPlayer = this;
         UIFactory.ChangeCursorState(true);
         AddAction(ComponentAction.Die, ShowDeathDialog);
-        _weaponChooser.Init(GetComponent<HpComponent>());
+        AddAction(ComponentAction.TakeDamage, UpdateHp);
+        HpComponent hpComponent = GetComponent<HpComponent>();
+        _weaponChooser.Init(hpComponent);
+        UpdateHp(hpComponent);
+        
     }
 
     private void Update() {
@@ -68,6 +72,11 @@ public class Player : CreatureBase {
         if (Input.GetKeyDown(KeyCode.BackQuote)) {
             UIFactory.TryHideActiveDialog();
         }
+    }
+
+    private void UpdateHp(Object data) {
+        var hpComponent = data as HpComponent;
+        PlayerHud.SetHp(hpComponent.Hp,hpComponent.MaxHp);
     }
 
     private void ShowDeathDialog(Object data) {

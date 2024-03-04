@@ -28,7 +28,7 @@ public class InteractionChecker {
         }
         
 
-        UIFactory.UpdateInteractableNotification(CheckInteractableObject() != null);
+        PlayerHud.UpdateInteractableIndication(CheckInteractableObject() != null);
     }
 
     public ClickableComponent CheckClickableObject() {

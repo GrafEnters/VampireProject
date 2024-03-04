@@ -9,8 +9,7 @@ public class UIFactory : MonoBehaviour {
     [SerializeField]
     private DialogsList _dialogsList;
     
-    [SerializeField]
-    private GameObject _interactableNotification;
+    
 
     private static UIFactory factory;
 
@@ -59,10 +58,6 @@ public class UIFactory : MonoBehaviour {
         if (ActiveDialog() != DialogType.None) {
             HideDialog(ActiveDialog());
         }
-    }
-
-    public static void UpdateInteractableNotification(bool isActive) {
-        factory._interactableNotification.SetActive(isActive);
     }
 
     public static void HideDialog(DialogType type) {

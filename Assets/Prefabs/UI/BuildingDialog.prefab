@@ -575,7 +575,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b5d354cd2ed494bb32d848c51b60cbf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialogType: 4
+  _dialogType: 3
   isActive: 0
   _buttonPrefab: {fileID: 2757926296379299200, guid: 41d2695483f7b2e40ad720c722a8d4ed,
     type: 3}
