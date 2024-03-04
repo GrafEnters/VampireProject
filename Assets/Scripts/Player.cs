@@ -56,6 +56,15 @@ public class Player : CreatureBase {
             }
         }
 
+        if (Input.GetKeyDown(KeyCode.L)) {
+            if (UIFactory.ActiveDialog() == DialogType.SkillSelection) {
+                UIFactory.HideDialog(DialogType.BuildingSelection);
+            } else if (UIFactory.ActiveDialog() == DialogType.None) {
+                SkillSelectionDialogData data = new SkillSelectionDialogData() { };
+                UIFactory.ShowDialog(DialogType.SkillSelection, data);
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.BackQuote)) {
             UIFactory.TryHideActiveDialog();
         }

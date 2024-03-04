@@ -85,6 +85,8 @@ public enum DialogType {
     FurnaceInteraction = 2,
     BuildingSelection = 3,
     DeathDialog = 4,
+    SkillSelection = 5,
+    SkillAltar = 6
 }
 
 public class DialogDataBase { }
