@@ -43,7 +43,12 @@ public class FieldOfView : MonoBehaviour {
     private void UpdateTrackedObjects() {
         _trackedObjects = new List<GameObject>();
         LayerMask msk = LayerMask.GetMask("Default","Ground","Player");
+        List<GameObject> _toRemove = new List<GameObject>();
         foreach (GameObject objInSight in _objectsInSight) {
+            if (objInSight == null) {
+                _toRemove.Add(objInSight);
+                continue;
+            }
             Ray ray = new Ray(transform.position, objInSight.transform.position - transform.position);
             if (!Physics.SphereCast(ray,0.1f, out RaycastHit hit,msk )) {
                 //TODO with more raycasts to it will be able to detect objects more precise
@@ -53,6 +58,10 @@ public class FieldOfView : MonoBehaviour {
             if (hit.collider.attachedRigidbody != null && hit.collider.attachedRigidbody.gameObject == objInSight) {
                 _trackedObjects.Add(objInSight);
             }
+        }
+
+        foreach (GameObject go in _toRemove) {
+            _objectsInSight.Remove(go);
         }
     }
 
