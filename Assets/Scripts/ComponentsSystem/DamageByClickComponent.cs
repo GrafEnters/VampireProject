@@ -10,9 +10,9 @@ public class DamageByClickComponent : ComponentBase {
     [SerializeField]
     private int _damagePerClick = 1;
 
-    protected override void Init(Action<string, Action<Object>> addAction, Action<string, Object> onSendAction) {
+    protected override void Init(Action<ComponentAction, Action<Object>> addAction, Action<ComponentAction, Object> onSendAction) {
         base.Init(addAction, onSendAction);
-        addAction.Invoke("Click", TakeDamage);
+        addAction.Invoke(ComponentAction.Click, TakeDamage);
     }
 
     private void TakeDamage(Object data) {

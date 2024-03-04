@@ -26,6 +26,10 @@ namespace _3rdPerson {
         void FixedUpdate() {
             float Horizontal = Input.GetAxis("Horizontal") * Speed;
             float Vertical = Input.GetAxis("Vertical") * Speed;
+            if (UIFactory.IsInDialog()) {
+                Horizontal = 0;
+                Vertical = 0;
+            }
 
             Vector3 Movement = Cam.transform.right * Horizontal + Cam.transform.forward * Vertical;
             Movement.y = 0f;

@@ -1167,8 +1167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a642837b8dfcd514daa84c6d3654f551, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _reachDistance: 1.5
   _animator: {fileID: 3332883781161917045}
+  _reachDistance: 1.5
   _fov: {fileID: 6710244434311445548}
   _navAgent: {fileID: 6721497775953413745}
   _rb: {fileID: 0}
@@ -1191,6 +1191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 10
+  _destroyOnDeath: 1
 --- !u!54 &7051077015249533050
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1242,6 +1243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c34aab6fce40ce95238a8ac796014b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isEnabled: 0
   _damagePerClick: 1
 --- !u!114 &-1180321528062787779
 MonoBehaviour:
@@ -1299,7 +1301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 3332883781161917045}
   _animTriggers:
-  - ComponentEvent: TakeDamage
+  - ComponentEvent: 3
     AnimationTrigger: TakeDamage
 --- !u!1 &7815210056147856824
 GameObject:

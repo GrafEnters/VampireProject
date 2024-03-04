@@ -2,14 +2,16 @@ using System;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-[RequireComponent(typeof(ClickableComponent))]
-public class OpenDialogByClickComponent : ComponentBase {
+public class OpenDialogByActionComponent : ComponentBase {
     [SerializeField]
     private DialogType _dialogType;
 
-    protected override void Init(Action<string, Action<Object>> addAction, Action<string, Object> onSendAction) {
+    [SerializeField]
+    private ComponentAction _actionName = ComponentAction.Interact;
+    
+    protected override void Init(Action<ComponentAction, Action<Object>> addAction, Action<ComponentAction, Object> onSendAction) {
         base.Init(addAction, onSendAction);
-        addAction.Invoke("Click", OpenDialog);
+        addAction.Invoke(_actionName, OpenDialog);
     }
 
     private void OpenDialog(Object obj) {

@@ -1,26 +1,20 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class UIFactory : MonoBehaviour {
     [SerializeField]
-    private Transform _dialogsHolder;
+    private Transform _dialogsContainer;
 
     [SerializeField]
-    private InventoryDialog _inventoryDialog;
-
+    private DialogsList _dialogsList;
+    
     [SerializeField]
-    private ChestInteractionDialog _chestInteractionDialog;
-
-    [SerializeField]
-    private FurnaceInteractionDialog _furnaceInteractionDialog;
-
-    [SerializeField]
-    private BuildingSelectionDialog _buildingSelectionDialog;
-
-    [SerializeField]
-    private DeathDialog _deathDialog;
+    private GameObject _interactableNotification;
 
     private static UIFactory factory;
+
+    private List<DialogBase> _shownDialogs = new List<DialogBase>();
 
     private void Awake() {
         factory = this;
@@ -32,70 +26,60 @@ public class UIFactory : MonoBehaviour {
     }
 
     public static bool IsInDialog() {
-        return factory._inventoryDialog.isActive || factory._chestInteractionDialog.isActive || factory._furnaceInteractionDialog.isActive ||
-               factory._buildingSelectionDialog.isActive;
+        return factory._shownDialogs.Count >0;
+    }
+    
+    public static DialogType ActiveDialog() {
+        if (factory._shownDialogs.Count == 0) {
+            return DialogType.None;
+        }
+
+        return factory._shownDialogs[0].DialogType;
+    }
+
+    public static DialogBase GetPrefabByType(DialogType type) {
+        DialogBase rb = factory._dialogsList.Dialogs.Find(b => b.DialogType == type);
+        if (rb == null) {
+            Debug.LogError($"Dialog not found in list, type: {type.ToString()}");
+            return null;
+        }
+
+        return Instantiate(rb, factory._dialogsContainer);
     }
 
     public static void ShowDialog(DialogType type, DialogDataBase data = null) {
-        var factory = FindObjectOfType<UIFactory>();
-        switch (type) {
-            case DialogType.Inventory:
-                factory._inventoryDialog.Set(data);
-                factory._inventoryDialog.Show();
-                break;
-            case DialogType.ChestInteraction:
-                factory._chestInteractionDialog.Set(data);
-                factory._chestInteractionDialog.Show();
-                break;
-            case DialogType.FurnaceInteraction:
-                factory._furnaceInteractionDialog.Set(data);
-                factory._furnaceInteractionDialog.Show();
-                break;
-            case DialogType.BuildingSelection:
-                factory._buildingSelectionDialog.Set(data);
-                factory._buildingSelectionDialog.Show();
-                break;
-            case DialogType.DeathDialog:
-                factory._deathDialog.Set(data);
-                factory._deathDialog.Show();
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(type), type, null);
-        }
-
+        var dialog = GetPrefabByType(type);
+        dialog.Set(data);
+        dialog.Show();
+        factory._shownDialogs.Add(dialog);
         ChangeCursorState(false);
     }
 
+    public static void TryHideActiveDialog() {
+        if (ActiveDialog() != DialogType.None) {
+            HideDialog(ActiveDialog());
+        }
+    }
+
+    public static void UpdateInteractableNotification(bool isActive) {
+        factory._interactableNotification.SetActive(isActive);
+    }
+
     public static void HideDialog(DialogType type) {
-        var factory = FindObjectOfType<UIFactory>();
-        switch (type) {
-            case DialogType.Inventory:
-
-                factory._inventoryDialog.Hide();
-                break;
-            case DialogType.ChestInteraction:
-
-                factory._chestInteractionDialog.Hide();
-                break;
-            case DialogType.FurnaceInteraction:
-
-                factory._furnaceInteractionDialog.Hide();
-                break;
-            case DialogType.BuildingSelection:
-
-                factory._buildingSelectionDialog.Hide();
-                break;
-            case DialogType.DeathDialog:
-
-                factory._deathDialog.Hide();
-                break;
+        DialogBase dialog = factory._shownDialogs.Find(d => d.DialogType == type);
+        if (dialog == null) {
+            return;
         }
 
+        dialog.Hide();
+        factory._shownDialogs.Remove(dialog);
+        Destroy(dialog.gameObject);
         ChangeCursorState(true);
     }
 }
-
+[Serializable]
 public enum DialogType {
+    None = -1,
     Inventory = 0,
     ChestInteraction = 1,
     FurnaceInteraction = 2,

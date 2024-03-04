@@ -1,6 +1,12 @@
 using UnityEngine;
 
 public class DialogBase : MonoBehaviour {
+
+    [SerializeField]
+    private DialogType _dialogType;
+
+    public DialogType DialogType => _dialogType;
+    
     public bool isActive = false;
 
     public virtual void Show() {
@@ -15,4 +21,8 @@ public class DialogBase : MonoBehaviour {
     }
 
     public virtual void Set(DialogDataBase dialogDataBase) { }
+    
+    public void HideButton() {
+        UIFactory.HideDialog(DialogType);
+    }
 }

@@ -15,14 +15,14 @@ public class HpComponent : ComponentBase {
 
     public void TakeDamage(int amount) {
         _currenthp -= amount;
-        _sendAction?.Invoke("TakeDamage", null);
+        _sendAction?.Invoke(ComponentAction.TakeDamage, null);
         if (_currenthp <= 0) {
             Die();
         }
     }
 
     private void Die() {
-        _sendAction?.Invoke("Die", null);
+        _sendAction?.Invoke(ComponentAction.Die, null);
         //TODO enable ragdoll here
         if (_destroyOnDeath) {
             Destroy(gameObject);

@@ -190,12 +190,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5681225711184562003}
-  - component: {fileID: 2587467783952499359}
   - component: {fileID: 7116776770507136912}
-  - component: {fileID: 5808113236659250625}
   - component: {fileID: 2538536876424718301}
   - component: {fileID: 1249244304951074298}
   - component: {fileID: 7785452053477736887}
+  - component: {fileID: 7341164354887537879}
   m_Layer: 0
   m_Name: Furnace
   m_TagString: Untagged
@@ -219,19 +218,6 @@ Transform:
   - {fileID: 8947315057268335720}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2587467783952499359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5246427468569136729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a641813a04e24d648cb5a5358c148b77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _maxHp: 10
 --- !u!54 &7116776770507136912
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -259,18 +245,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5808113236659250625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5246427468569136729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75049847500947edb529b150363813cc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2538536876424718301
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,6 +271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _dialogType: 2
+  _actionName: 2
 --- !u!114 &7785452053477736887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,6 +282,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 242fbcaa72d949f19b01d1b84121a0cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _magnetableAnchors: []
+--- !u!114 &7341164354887537879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5246427468569136729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d2a27d052c74bfcbcd6868ffb8399a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &5592356193461616850

@@ -256,8 +256,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8332599364478162335}
-        m_TargetAssemblyTypeName: InventoryDialog, Assembly-CSharp
-        m_MethodName: Hide
+        m_TargetAssemblyTypeName: DialogBase, Assembly-CSharp
+        m_MethodName: HideButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -357,6 +357,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22bec8162b8826243bf25c4cedc24818, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dialogType: 0
+  isActive: 0
   _slots:
   - {fileID: 457276683483551954}
   - {fileID: 2733049444780459642}

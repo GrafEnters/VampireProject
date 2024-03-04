@@ -225,6 +225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e138805d3e35ddf458fc05305e4ee39a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dialogType: 1
+  isActive: 0
   _playerInventory: {fileID: 5271854889848539585}
   _chestInventory: {fileID: 7369051657095185852}
 --- !u!1 &5229679143802218431
@@ -349,8 +351,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6913196177560899324}
-        m_TargetAssemblyTypeName: ChestInteractionDialog, Assembly-CSharp
-        m_MethodName: Hide
+        m_TargetAssemblyTypeName: DialogBase, Assembly-CSharp
+        m_MethodName: HideButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

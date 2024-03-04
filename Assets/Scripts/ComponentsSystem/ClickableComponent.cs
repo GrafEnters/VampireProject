@@ -7,6 +7,6 @@ public class ClickableComponent : ComponentBase {
             return;
         }
 
-        _sendAction?.Invoke("Click", Player.CurrentPlayer);
+        _sendAction?.Invoke(ComponentAction.Click, Player.CurrentPlayer);
     }
 }

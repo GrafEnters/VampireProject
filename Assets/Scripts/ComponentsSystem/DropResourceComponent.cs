@@ -11,9 +11,9 @@ public class DropResourceComponent : ComponentBase {
     
     [SerializeField]
     private float _randomDropRadius = 0.25f;
-    protected  override void Init(Action<string, Action<Object>> addAction, Action<string,Object> onSendAction) {
+    protected  override void Init(Action<ComponentAction, Action<Object>> addAction, Action<ComponentAction,Object> onSendAction) {
         base.Init(addAction, onSendAction);
-        addAction.Invoke("Die", DropResource);
+        addAction.Invoke(ComponentAction.Die, DropResource);
     }
 
     private void DropResource(Object data) {

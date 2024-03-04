@@ -20,7 +20,7 @@ public class DeathDialog : DialogBase {
     public void Respawn() {
         _player.transform.position = FindObjectOfType<PlayerRespawn>().transform.position;
         _player.GetComponent<HpComponent>().RefillHealth();
-        Hide();
+        HideButton();
     }
 }
 

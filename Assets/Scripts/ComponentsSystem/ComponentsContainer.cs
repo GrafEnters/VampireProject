@@ -4,7 +4,7 @@ using UnityEngine;
 using Object = UnityEngine.Object;
 
 public class ComponentsContainer : MonoBehaviour {
-    private readonly Dictionary<string, Action<Object>> _nameActionDictionary = new Dictionary<string, Action<Object>>();
+    private readonly Dictionary<ComponentAction, Action<Object>> _nameActionDictionary = new Dictionary<ComponentAction, Action<Object>>();
 
     protected virtual void Awake() {
         InitComponents();
@@ -16,7 +16,7 @@ public class ComponentsContainer : MonoBehaviour {
         }
     }
 
-    protected void AddAction(string type, Action<Object> action) {
+    protected void AddAction(ComponentAction type, Action<Object> action) {
         if (_nameActionDictionary.ContainsKey(type)) {
             _nameActionDictionary[type] += action;
         } else {
@@ -24,7 +24,7 @@ public class ComponentsContainer : MonoBehaviour {
         }
     }
 
-    private void ReceiveAction(string type, Object data) {
+    private void ReceiveAction(ComponentAction type, Object data) {
         if (_nameActionDictionary.ContainsKey(type)) {
             _nameActionDictionary[type].Invoke(data);
         }
