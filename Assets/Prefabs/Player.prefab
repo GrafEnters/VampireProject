@@ -168,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 5539246644488006401}
   _weaponChooser: {fileID: 8811666029999542467}
+  _skillsList: {fileID: 11400000, guid: 5719899a043633b489155025513aaa5e, type: 2}
 --- !u!114 &7288365505870518139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +219,7 @@ MonoBehaviour:
   _constructingUnavailable: {fileID: 2100000, guid: 879fd24b589764e4185db4ce7cbb74bb,
     type: 2}
   _maxDist: 6
-  _rotationSpeed: 1
+  _rotationSpeed: 3
 --- !u!114 &5551272720636895089
 MonoBehaviour:
   m_ObjectHideFlags: 0

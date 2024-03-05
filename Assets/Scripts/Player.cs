@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -5,10 +6,16 @@ public class Player : CreatureBase {
     [SerializeField]
     private WeaponChooser _weaponChooser;
 
+    [SerializeField]
+    private SkillsList _skillsList;
+
     public static Player CurrentPlayer;
     private static readonly int Attack = Animator.StringToHash("Attack");
     private InteractionChecker _interactionChecker = new InteractionChecker();
+    private SkillsChecker _skillsChecker = new SkillsChecker();
     public ConstructingManager ConstructingManager => GetComponent<ConstructingManager>();
+
+    public Animator Animator => _animator;
 
     public Inventory GetInventory() => GetComponent<InventoryComponent>().Inventory;
 
@@ -20,13 +27,17 @@ public class Player : CreatureBase {
         AddAction(ComponentAction.TakeDamage, UpdateHp);
         HpComponent hpComponent = GetComponent<HpComponent>();
         _weaponChooser.Init(hpComponent);
+        _skillsChecker.Init(this, _skillsList);
+    }
+
+    private void Start() {
+        HpComponent hpComponent = GetComponent<HpComponent>();
         UpdateHp(hpComponent);
-        
     }
 
     private void Update() {
         _interactionChecker.UpdateSeenObject();
-        
+
         CheckDialogsInputs();
 
         if (UIFactory.IsInDialog()) {
@@ -34,13 +45,14 @@ public class Player : CreatureBase {
         }
 
         CheckWorldInputs();
+        _skillsChecker.CheckSkillsInputs();
     }
 
     private void CheckDialogsInputs() {
         if (Input.GetKeyDown(KeyCode.Tab)) {
             if (UIFactory.ActiveDialog() == DialogType.Inventory) {
                 UIFactory.HideDialog(DialogType.Inventory);
-            } else if(UIFactory.ActiveDialog() == DialogType.None){
+            } else if (UIFactory.ActiveDialog() == DialogType.None) {
                 InventoryDialogData data = new InventoryDialogData {
                     Player = GetInventory()
                 };
@@ -52,7 +64,7 @@ public class Player : CreatureBase {
         if (Input.GetKeyDown(KeyCode.B)) {
             if (UIFactory.ActiveDialog() == DialogType.BuildingSelection) {
                 UIFactory.HideDialog(DialogType.BuildingSelection);
-            } else if(UIFactory.ActiveDialog() == DialogType.None) {
+            } else if (UIFactory.ActiveDialog() == DialogType.None) {
                 BuildingSelectionDialogData data = new BuildingSelectionDialogData {
                     Player = this
                 };
@@ -76,7 +88,7 @@ public class Player : CreatureBase {
 
     private void UpdateHp(Object data) {
         var hpComponent = data as HpComponent;
-        PlayerHud.SetHp(hpComponent.Hp,hpComponent.MaxHp);
+        PlayerHud.SetHp(hpComponent.Hp, hpComponent.MaxHp);
     }
 
     private void ShowDeathDialog(Object data) {
@@ -88,13 +100,13 @@ public class Player : CreatureBase {
     }
 
     private void CheckWorldInputs() {
-        if(Input.GetKeyDown(KeyCode.F)) {
+        if (Input.GetKeyDown(KeyCode.F)) {
             InteractableComponent interactable = _interactionChecker.CheckInteractableObject();
             if (interactable != null) {
                 interactable.Interact();
-            }   
+            }
         }
-        
+
         if (Input.GetMouseButtonDown(0)) {
             _animator.SetTrigger(Attack);
         }
